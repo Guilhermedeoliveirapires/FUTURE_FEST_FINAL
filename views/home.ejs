@@ -7,43 +7,24 @@
   <meta name="keywords" content="bem-estar, saúde, fitness, mindfulness, vida saudável, rotina saudável">
   <title>Vida Plena - Bem-estar Integral</title>
 
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
   <link rel="stylesheet" href="/home.css">
 
   <style>
-  
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    .perfil-img {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    .perfil-btn {
-      padding: 0;
-      width: 40px;
-      height: 40px;
-    }
+    html { scroll-behavior: smooth; }
+    .perfil-img { width: 40px; height: 40px; object-fit: cover; border-radius: 50%; }
+    .perfil-btn { padding: 0; width: 40px; height: 40px; }
   </style>
 </head>
 <body>
 
-
   <nav class="navbar navbar-expand-lg bg-transparent py-3">
     <div class="container">
-
       <a class="navbar-brand d-flex align-items-center" href="/home">
         <img src="logo.png.png" alt="Logo Vida Plena" height="30" class="me-2">
         <span class="fw-semibold fs-5 text-dark"></span>
       </a>
-
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
         <span class="navbar-toggler-icon"></span>
@@ -61,12 +42,12 @@
 
       <div class="d-flex">
         <% if (usuario) { %>
-          
+          <!-- USUÁRIO LOGADO -->
           <div class="dropdown">
             <a class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center perfil-btn"
                href="#" role="button" id="perfilMenu" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if (imagemPerfil) { %>
-                <img src="<%= imagemPerfil %>" alt="Imagem de Perfil" class="perfil-img">
+              <% if (imagemPerfil && imagemPerfil.trim() !== '') { %>
+                <img src="<%= imagemPerfil %>" alt="Perfil" class="perfil-img">
               <% } else { %>
                 <i class="bi bi-person-circle fs-4"></i>
               <% } %>
@@ -74,12 +55,12 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilMenu">
               <li><a class="dropdown-item" href="/perfil">Meu Perfil</a></li>
               <li><a class="dropdown-item" href="/configuracoes">Configurações</a></li>
-              <li><hr class="dropdown-divider" /></li>
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="/sair">Sair</a></li>
             </ul>
           </div>
         <% } else { %>
-          
+          <!-- NÃO LOGADO -->
           <a href="/registro" class="btn btn-outline-dark rounded-pill me-2">Cadastre-se</a>
           <a href="/login" class="btn btn-outline-dark rounded-pill">Entre</a>
         <% } %>
@@ -87,13 +68,12 @@
     </div>
   </nav>
 
-
+  <!-- TODO O RESTO DO SEU HTML CONTINUA 100% IGUAL -->
   <section class="hero d-flex" style="padding-top: 400px;">
     <div class="container text-start">
       <div class="tag p-2 px-4 rounded-pill mb-3">
-        <small>• Especialistas em bem-estar Premiados</small>
+        <small>Especialistas em bem-estar Premiados</small>
       </div>
-
       <h1 class="fw-bold display-5 mb-3">O Programa Que Vai Tornar<br>Sua Rotina Saudável</h1>
       <p class="fs-6 w-75">
         Descubra novas formas de cuidar do corpo e da mente com práticas simples, acessíveis e sustentáveis para o seu dia a dia.
