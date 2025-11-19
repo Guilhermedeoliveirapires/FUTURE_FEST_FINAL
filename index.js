@@ -321,27 +321,48 @@ app.post('/login', async (req, res) => {
         const usuario = await usuarios.findOne({ email: req.body.email });
 
         if (usuario && await bcrypt.compare(req.body.senha, usuario.senha)) {
-            // ←←← FORÇA A GRAVAÇÃO DA SESSÃO (o que estava faltando no Render)
+            // FORÇA A GRAVAÇÃO DA SESSÃO (obrigatório no Render!)
             req.session.usuario = usuario.nome;
-            req.session.save((err) => {  // <--- ESSA LINHA É OBRIGATÓRIA NO RENDER
+            req.session.imagemPerfil = usuario.imagemPerfil || null;
+
+            // Garante que a sessão seja salva antes do redirect
+            req.session.save((err) => {
                 if (err) {
                     console.error('Erro ao salvar sessão:', err);
                     return res.status(500).send('Erro interno');
                 }
-                // Agora sim redireciona
-                res.redirect('/home');  // <--- VAI DIRETO PRA HOME (pula o /bemvindo)
+                // Redireciona direto pra home (sem passar por /bemvindo)
+                res.redirect('/home');
             });
         } else {
+            // Login errado
             res.send(`
-                <script>
-                    alert("E-mail ou senha incorretos!");
-                    window.location.href = "/login";
-                </script>
+                <!DOCTYPE html>
+                <html lang="pt-BR">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Erro no Login</title>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                    <style>
+                        body { background: #f8f9fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+                    </style>
+                </head>
+                <body>
+                    <div class="alert alert-danger" style="max-width: 500px;">
+                        <strong>E-mail ou senha incorretos!</strong>
+                        <br><a href="/login" class="btn btn-primary mt-3">Voltar</a>
+                    </div>
+                    <script>
+                        setTimeout(() => location.href = '/login', 3000);
+                    </script>
+                </body>
+                </html>
             `);
         }
     } catch (erro) {
         console.error('Erro no login:', erro);
-        res.status(500).send('Erro no servidor');
+        res.status(500).send('Erro no servidor. Tente novamente mais tarde.');
     } finally {
         await cliente.close();
     }
