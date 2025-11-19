@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const methodOverride = require('method-override');
 const cors = require('cors');
 const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
+const MongoStore = require('connect-mongo');
 
 const app = express();
 
@@ -34,10 +35,16 @@ app.use(cors());
 app.use(session({
     secret: process.env.SESSION_SECRET || 'segredo-super-seguro',
     resave: false,
-    saveUninitialized: false, // mudei pra false, melhor prática
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL,
+        collectionName: 'sessions',
+        ttl: 14 * 24 * 60 * 60 // 14 dias
+    }),
     cookie: { 
-        secure: process.env.NODE_ENV === 'production', // HTTPS no Render/Vercel
-        maxAge: 24 * 60 * 60 * 1000 
+        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true,
+        maxAge: 14 * 24 * 60 * 60 * 1000
     }
 }));
 
