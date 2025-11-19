@@ -730,6 +730,11 @@ app.post('/newsletter', async (req, res) => {
     }
 });
 
+app.get('/', (req, res) => {
+    req.session.usuario ? res.redirect('/home') : res.redirect('/login');
+});
+
+
 app.listen(porta, '0.0.0.0', () => { 
     console.log(`Servidor rodando na porta ${porta}`);
     console.log(`Acesse: http://localhost:${porta}/home`);
