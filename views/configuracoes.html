@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações - Vida Plena</title>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/home.css">
+
+  <style>
+    .config-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+    }
+    .config-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+    }
+    .config-section {
+      margin-bottom: 2rem;
+    }
+    .config-section:last-child {
+      margin-bottom: 0;
+    }
+    .config-section h5 {
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .form-label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #6B5BFF, #FF5CA8);
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #5a4ae6, #e54b95);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(107, 91, 255, 0.3);
+    }
+    .alert {
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background: linear-gradient(90deg, #6B5BFF, #FF5CA8);
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+  </style>
+</head>
+<body>
+
+
+  <nav class="navbar navbar-expand-lg bg-transparent py-3">
+    <div class="container">
+    
+      <a class="navbar-brand d-flex align-items-center" href="/home">
+        <img src="logo.png.png" alt="Logo Vida Plena" height="30" class="me-2">
+        <span class="fw-semibold fs-5 text-dark"></span>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="menuNav">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/home">Home</a></li>
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/AI">Monte sua Rotina</a></li>
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/planos">Planos</a></li>
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/sobre">Sobre Nós</a></li>
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/formulario">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="d-flex">
+        <div class="dropdown">
+          <a class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center" 
+             style="width: 40px; height: 40px; padding: 0;"
+             href="#" role="button" id="perfilMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-4" id="perfilIcon"></i>
+            <img id="perfilImg" src="" alt="Imagem de Perfil" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; display: none;">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilMenu">
+            <li><a class="dropdown-item" href="/perfil">Meu Perfil</a></li>
+            <li><a class="dropdown-item" href="/configuracoes">Configurações</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item text-danger" href="/sair">Sair</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="config-container">
+    <h2 class="mb-4">Configurações da Conta</h2>
+    
+    <div id="alertContainer"></div>
+
+
+    <div class="config-card">
+      <div class="config-section">
+        <h5><i class="bi bi-bell me-2"></i>Notificações</h5>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <label class="form-label mb-1">E-mail de notificações</label>
+            <small class="text-muted d-block">Receba atualizações sobre novos conteúdos e ofertas</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="notificacoesEmail" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <label class="form-label mb-1">Notificações push</label>
+            <small class="text-muted d-block">Receba alertas importantes no navegador</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="notificacoesPush">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <label class="form-label mb-1">Newsletter semanal</label>
+            <small class="text-muted d-block">Receba resumos semanais com dicas de bem-estar</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="newsletterSemanal" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="config-card">
+      <div class="config-section">
+        <h5><i class="bi bi-shield-lock me-2"></i>Privacidade e Segurança</h5>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <label class="form-label mb-1">Perfil público</label>
+            <small class="text-muted d-block">Permitir que outros usuários vejam seu perfil</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="perfilPublico">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <label class="form-label mb-1">Compartilhar dados para melhorias</label>
+            <small class="text-muted d-block">Ajudar-nos a melhorar nossos serviços</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="compartilharDados" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="mt-3">
+          <a href="#" class="btn btn-outline-primary">Gerenciar Cookies</a>
+          <a href="#" class="btn btn-outline-primary ms-2">Política de Privacidade</a>
+        </div>
+      </div>
+    </div>
+
+  
+    <div class="config-card">
+      <div class="config-section">
+        <h5><i class="bi bi-gear me-2"></i>Preferências</h5>
+        <div class="mb-3">
+          <label for="idioma" class="form-label">Idioma</label>
+          <select class="form-select" id="idioma">
+            <option value="pt-br" selected>Português (Brasil)</option>
+            <option value="pt-pt">Português (Portugal)</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="tema" class="form-label">Tema</label>
+          <select class="form-select" id="tema">
+            <option value="light" selected>Claro</option>
+            <option value="dark">Escuro</option>
+            <option value="auto">Automático (seguir sistema)</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="timezone" class="form-label">Fuso Horário</label>
+          <select class="form-select" id="timezone">
+            <option value="America/Sao_Paulo" selected>America/São Paulo (GMT-3)</option>
+            <option value="America/Los_Angeles">America/Los Angeles (GMT-8)</option>
+            <option value="America/New_York">America/New York (GMT-5)</option>
+            <option value="Europe/Lisbon">Europe/Lisboa (GMT+0)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="config-card">
+      <div class="config-section">
+        <h5><i class="bi bi-person-badge me-2"></i>Conta</h5>
+        <div class="d-grid gap-2">
+          <button class="btn btn-outline-danger" onclick="confirmarExclusao()">
+            <i class="bi bi-trash me-2"></i>Excluir Conta
+          </button>
+          <small class="text-muted text-center">Esta ação não pode ser desfeita. Todos os seus dados serão permanentemente removidos.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2">
+      <a href="/home" class="btn btn-outline-secondary">Cancelar</a>
+      <button type="button" class="btn btn-primary" onclick="salvarConfiguracoes()">Salvar Configurações</button>
+    </div>
+  </div>
+
+
+  <footer class="footer bg-dark text-light pt-5 pb-3 mt-5">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-md-3 mb-4">
+          <div class="d-flex align-items-center mb-3">
+            <img src="logobranco.png" alt="Vida Plena" height="35" class="me-2">
+          </div>
+          <p class="small">
+            Sigam-nos em nossas redes sociais para ter<br>
+            melhores atualizações sobre todo o nosso<br>
+            conteúdo exclusivo para você.
+          </p>
+        </div>
+      </div>
+
+      <hr class="border-secondary my-4">
+
+      <div class="d-flex justify-content-between small">
+        <p class="mb-0">©2025 Vida Plena. Comprometidos com o bem-estar integral.</p>
+        <a href="/#" class="text-light text-decoration-none">Política de Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+   
+    async function carregarConfiguracoes() {
+      try {
+        const response = await fetch('/api/configuracoes', {
+          method: 'GET',
+          credentials: 'include'
+        });
+
+        if (response.ok) {
+          const configs = await response.json();
+          
+          if (configs.notificacoesEmail !== undefined) {
+            document.getElementById('notificacoesEmail').checked = configs.notificacoesEmail;
+          }
+          if (configs.notificacoesPush !== undefined) {
+            document.getElementById('notificacoesPush').checked = configs.notificacoesPush;
+          }
+          if (configs.newsletterSemanal !== undefined) {
+            document.getElementById('newsletterSemanal').checked = configs.newsletterSemanal;
+          }
+          if (configs.perfilPublico !== undefined) {
+            document.getElementById('perfilPublico').checked = configs.perfilPublico;
+          }
+          if (configs.compartilharDados !== undefined) {
+            document.getElementById('compartilharDados').checked = configs.compartilharDados;
+          }
+          if (configs.idioma) {
+            document.getElementById('idioma').value = configs.idioma;
+          }
+          if (configs.tema) {
+            document.getElementById('tema').value = configs.tema;
+          }
+          if (configs.timezone) {
+            document.getElementById('timezone').value = configs.timezone;
+          }
+        } else if (response.status === 401) {
+          window.location.href = '/login';
+        }
+      } catch (error) {
+        console.error('Erro ao carregar configurações:', error);
+      }
+
+     
+      try {
+        const response = await fetch('/verificar-sessao', {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const data = await response.json();
+        if (data.logado && data.imagemPerfil) {
+          document.getElementById('perfilImg').src = data.imagemPerfil;
+          document.getElementById('perfilImg').style.display = 'block';
+          document.getElementById('perfilIcon').style.display = 'none';
+        }
+      } catch (error) {
+        console.error('Erro ao verificar sessão:', error);
+      }
+    }
+
+    
+    async function salvarConfiguracoes() {
+      const alertContainer = document.getElementById('alertContainer');
+      alertContainer.innerHTML = '';
+
+      const configs = {
+        notificacoesEmail: document.getElementById('notificacoesEmail').checked,
+        notificacoesPush: document.getElementById('notificacoesPush').checked,
+        newsletterSemanal: document.getElementById('newsletterSemanal').checked,
+        perfilPublico: document.getElementById('perfilPublico').checked,
+        compartilharDados: document.getElementById('compartilharDados').checked,
+        idioma: document.getElementById('idioma').value,
+        tema: document.getElementById('tema').value,
+        timezone: document.getElementById('timezone').value
+      };
+
+      try {
+        const response = await fetch('/api/configuracoes', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify(configs)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alertContainer.innerHTML = '<div class="alert alert-success">Configurações salvas com sucesso!</div>';
+          setTimeout(() => {
+            alertContainer.innerHTML = '';
+          }, 3000);
+        } else {
+          alertContainer.innerHTML = `<div class="alert alert-danger">${data.error || 'Erro ao salvar configurações.'}</div>`;
+        }
+      } catch (error) {
+        console.error('Erro ao salvar configurações:', error);
+        alertContainer.innerHTML = '<div class="alert alert-danger">Erro ao conectar com o servidor. Tente novamente.</div>';
+      }
+    }
+
+ 
+    async function confirmarExclusao() {
+      if (!confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita e todos os seus dados serão permanentemente removidos.')) {
+        return;
+      }
+
+      if (!confirm('Esta é sua última chance. Deseja realmente excluir sua conta permanentemente?')) {
+        return;
+      }
+
+      const alertContainer = document.getElementById('alertContainer');
+      
+      try {
+        const response = await fetch('/api/conta', {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alertContainer.innerHTML = '<div class="alert alert-success">Conta excluída com sucesso. Você será redirecionado...</div>';
+          
+        
+          setTimeout(() => {
+            window.location.href = '/home';
+          }, 2000);
+        } else {
+          alertContainer.innerHTML = `<div class="alert alert-danger">${data.error || 'Erro ao excluir conta. Tente novamente.'}</div>`;
+        }
+      } catch (error) {
+        console.error('Erro ao excluir conta:', error);
+        alertContainer.innerHTML = '<div class="alert alert-danger">Erro ao conectar com o servidor. Tente novamente.</div>';
+      }
+    }
+
+   
+    document.addEventListener('DOMContentLoaded', carregarConfiguracoes);
+  </script>
+</body>
+</html>
+

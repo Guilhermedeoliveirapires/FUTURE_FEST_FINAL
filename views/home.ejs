@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plataforma completa de bem-estar dedicada a promover saúde física, mental e emocional. Planos personalizados, assistente IA e suporte especializado.">
+  <meta name="keywords" content="bem-estar, saúde, fitness, mindfulness, vida saudável, rotina saudável">
+  <title>Vida Plena - Bem-estar Integral</title>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/home.css">
+
+  <style>
+  
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    .perfil-img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .perfil-btn {
+      padding: 0;
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+
+
+  <nav class="navbar navbar-expand-lg bg-transparent py-3">
+    <div class="container">
+
+      <a class="navbar-brand d-flex align-items-center" href="/home">
+        <img src="logo.png.png" alt="Logo Vida Plena" height="30" class="me-2">
+        <span class="fw-semibold fs-5 text-dark"></span>
+      </a>
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="menuNav">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/home">Home</a></li>
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/AI">Monte sua Rotina</a></li>
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/planos">Planos</a></li>
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/sobre">Sobre Nós</a></li>
+          <li class="nav-item"><a class="nav-link mx-2 text-dark" href="/formulario">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="d-flex">
+        <% if (usuario) { %>
+          
+          <div class="dropdown">
+            <a class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center perfil-btn"
+               href="#" role="button" id="perfilMenu" data-bs-toggle="dropdown" aria-expanded="false">
+              <% if (imagemPerfil) { %>
+                <img src="<%= imagemPerfil %>" alt="Imagem de Perfil" class="perfil-img">
+              <% } else { %>
+                <i class="bi bi-person-circle fs-4"></i>
+              <% } %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilMenu">
+              <li><a class="dropdown-item" href="/perfil">Meu Perfil</a></li>
+              <li><a class="dropdown-item" href="/configuracoes">Configurações</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item text-danger" href="/sair">Sair</a></li>
+            </ul>
+          </div>
+        <% } else { %>
+          
+          <a href="/registro" class="btn btn-outline-dark rounded-pill me-2">Cadastre-se</a>
+          <a href="/login" class="btn btn-outline-dark rounded-pill">Entre</a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="hero d-flex" style="padding-top: 400px;">
+    <div class="container text-start">
+      <div class="tag p-2 px-4 rounded-pill mb-3">
+        <small>• Especialistas em bem-estar Premiados</small>
+      </div>
+
+      <h1 class="fw-bold display-5 mb-3">O Programa Que Vai Tornar<br>Sua Rotina Saudável</h1>
+      <p class="fs-6 w-75">
+        Descubra novas formas de cuidar do corpo e da mente com práticas simples, acessíveis e sustentáveis para o seu dia a dia.
+      </p>
+    </div>
+  </section>
+
+  <section class="escolher">
+    <div class="container">
+      <h2>Por que nos escolher?</h2>
+      <p class="subtitulo">Temos treinadores, nutricionistas especializados, tudo para o seu bem-estar.</p>
+
+      <div class="conteudo">
+
+        <div class="texto">
+          <div class="item">
+            <div class="icone">🏋️‍♂️</div>
+            <div class="txt">
+              <h3>Acompanhamento Profissional</h3>
+              <p>Planos de treino personalizados para aumentar seu bem-estar e melhorar sua qualidade de vida.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icone">🧘‍♀️</div>
+            <div class="txt">
+              <h3>Nutrição Equilibrada</h3>
+              <p>Dicas e cardápios saudáveis pensados para nutrir o corpo e fortalecer sua mente.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icone">💡</div>
+            <div class="txt">
+              <h3>Oficinas de Mindfulness</h3>
+              <p>Práticas simples de respiração e foco para reduzir o estresse e trazer equilíbrio.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="icone">🥕</div>
+            <div class="txt">
+              <h3>Conteúdo Educativo</h3>
+              <p>Materiais interativos com informações úteis sobre hábitos saudáveis e motivação.</p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="imagens">
+          <div class="img-small img-top">
+            <img src="pexels-leonmart-1552108.jpg" alt="Treino">
+          </div>
+
+          <div class="img-small img-bottom">
+            <img src="pexels-polina-tankilevitch-4443444.jpg" alt="Suco natural">
+          </div>
+
+          <div class="img-large">
+            <img src="pexels-gabby-k-20419194.jpg" alt="Óleos naturais">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="mentores">
+  <div class="mentores-imagens">
+    <img src="pexels-marcuschanmedia-17898148.jpg" alt="Treinadora com bola">
+    <img src="pexels-ketut-subiyanto-4804046.jpg" alt="Treinador na academia">
+  </div>
+
+  <div class="mentores-conteudo">
+    <span class="mentores-sub">Você está procurando um mentor?</span>
+    <h2 class="mentores-titulo">Treinadores</h2>
+    <p>
+      Está em busca de um treinador que entenda suas metas e respeite seu ritmo?
+      Nossos profissionais são especializados em saúde física e mental, prontos
+      para orientar você com segurança e motivação. Cada treino é pensado para
+      equilibrar corpo e mente, ajudando a desenvolver hábitos saudáveis e duradouros.
+    </p>
+    <button class="mentores-btn" onclick="window.location.href='/sobre'">Explorar mais</button>
+  </div>
+</section>
+
+
+  
+  <div class="curva"></div>
+
+  
+  <section id="planos" class="plans">
+    <div class="plans-header">
+      <h2>Junte-se a nós</h2>
+    </div>
+
+    <div class="plans-container">
+      
+      <div class="plan-card">
+        <h3>Plano Iniciante</h3>
+        <h1>$10 <span>/ Mês</span></h1>
+        <p>Ideal para quem está começando sua jornada de bem-estar e busca orientação básica.</p>
+        <ul>
+          <li>✔️ Acesso ao assistente IA para montar rotinas personalizadas</li>
+          <li>✔️ Planos de exercícios básicos para iniciantes</li>
+          <li>✔️ Dicas de nutrição e alimentação saudável</li>
+          <li>✔️ Conteúdo educativo sobre bem-estar físico e mental</li>
+        </ul>
+        <a href="/pagamento?plano=iniciante" class="btn-assinar">Assinar Plano</a>
+      </div>
+
+      
+      <div class="plan-card destaque">
+        <h3>Plano Premium</h3>
+        <h1>$15 <span>/ Mês</span></h1>
+        <p>Experiência completa com todos os recursos e acompanhamento prioritário para resultados.</p>
+        <ul>
+          <li>✔️ Tudo do Plano Iniciante</li>
+          <li>✔️ Planos de treino avançados e personalizados</li>
+          <li>✔️ Acompanhamento nutricional detalhado</li>
+          <li>✔️ Sessões de mindfulness e meditação guiadas</li>
+          <li>✔️ Suporte prioritário via e-mail e chat</li>
+        </ul>
+        <a href="/pagamento?plano=premium" class="btn-assinar">Assinar Plano</a>
+      </div>
+
+      <div class="plan-card">
+        <h3>Plano Master</h3>
+        <h1>$20 <span>/ Mês</span></h1>
+        <p>Experiência máxima com acompanhamento individual e recursos exclusivos para transformação completa.</p>
+        <ul>
+          <li>✔️ Tudo do Plano Premium</li>
+          <li>✔️ Consultoria individual com especialistas</li>
+          <li>✔️ Planos de treino ultra-personalizados</li>
+          <li>✔️ Acompanhamento psicológico e emocional</li>
+          <li>✔️ Acesso exclusivo a workshops e eventos ao vivo</li>
+        </ul>
+        <a href="/pagamento?plano=master" class="btn-assinar">Assinar Plano</a>
+      </div>
+    </div>
+  </section>
+
+ 
+  <section class="newsletter">
+    <div class="newsletter-content">
+      <h2>Inscreva-se para receber ofertas</h2>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="newsletterEmail" placeholder="Email" required>
+        <button type="submit">inscreva-se</button>
+      </form>
+      <p id="newsletterMessage" style="display: none; margin-top: 10px; color: #28a745;"></p>
+      <p>Ao se inscrever, você concorda com a nossa <a href="/privacidade">Política de Privacidade</a></p>
+    </div>
+  </section>
+
+
+  <footer class="footer bg-dark text-light pt-5 pb-3" style="margin-top: 0;">
+    <div class="container">
+      <div class="row justify-content-between">
+      
+        <div class="col-md-3 mb-4">
+          <div class="d-flex align-items-center mb-3">
+            <img src="logobranco.png" alt="Vida Plena" height="35" class="me-2">
+            <span class="fs-5 fw-medium text-light" style="text-transform: lowercase;"></span>
+          </div>
+          <p class="small mb-3" style="line-height: 1.6;">
+            Sigam-nos em nossas redes sociais para ter<br>
+            melhores atualizações sobre todo o nosso<br>
+            conteúdo exclusivo para você.
+          </p>
+          <div class="d-flex gap-3">
+            <a href="https://instagram.com" target="_blank" class="text-light" style="font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" title="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="text-light" style="font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" title="Twitter">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="text-light" style="font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" title="YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="text-light" style="font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+          </div>
+        </div>
+
+      
+        <div class="col-md-8 row text-start">
+          <div class="col-6 col-md-3 mb-3">
+            <h6 class="fw-semibold mb-3 text-white">Quick Links</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="/home" class="text-light text-decoration-none">Home</a></li>
+              <li class="mb-2"><a href="/planos" class="text-light text-decoration-none">Planos</a></li>
+              <li class="mb-2"><a href="/sobre" class="text-light text-decoration-none">Sobre Nós</a></li>
+              <li class="mb-2"><a href="/formulario" class="text-light text-decoration-none">Contatos</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <h6 class="fw-semibold mb-3 text-white">About</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Company</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Destination</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Wonders</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Careers</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <h6 class="fw-semibold mb-3 text-white">Help</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Help Center</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Support Team</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Community</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <h6 class="fw-semibold mb-3 text-white">Legal</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Terms & Conditions</a></li>
+              <li class="mb-2"><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-secondary my-4">
+
+      <div class="d-flex justify-content-between small">
+        <p class="mb-0 text-light">©2025 Vida Plena. Comprometidos com o bem-estar integral.</p>
+        <a href="/privacidade" class="text-light text-decoration-none">Política de Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('reload') === 'true') {
+        return;
+      }
+
+      try {
+        const response = await fetch('/verificar-sessao', {
+          method: 'GET',
+          credentials: 'include'
+        });
+        const data = await response.json();
+        
+        if (!data.logado && window.location.pathname === '/home') {
+          window.location.href = '/home?reload=true';
+        }
+      } catch (error) {
+        console.error('Erro ao verificar sessão:', error);
+      }
+
+      const newsletterForm = document.getElementById('newsletterForm');
+      const newsletterEmail = document.getElementById('newsletterEmail');
+      const newsletterMessage = document.getElementById('newsletterMessage');
+
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = newsletterEmail.value.trim();
+
+          if (!email) {
+            newsletterMessage.textContent = 'Por favor, insira um e-mail válido.';
+            newsletterMessage.style.display = 'block';
+            newsletterMessage.style.color = '#dc3545';
+            return;
+          }
+
+          try {
+            const response = await fetch('/newsletter', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              credentials: 'include',
+              body: JSON.stringify({ email: email })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              newsletterMessage.textContent = data.message || 'E-mail registrado com sucesso!';
+              newsletterMessage.style.display = 'block';
+              newsletterMessage.style.color = '#28a745';
+              newsletterEmail.value = '';
+              
+          
+              setTimeout(() => {
+                newsletterMessage.style.display = 'none';
+              }, 5000);
+            } else {
+              newsletterMessage.textContent = data.error || 'Erro ao registrar e-mail.';
+              newsletterMessage.style.display = 'block';
+              newsletterMessage.style.color = '#dc3545';
+            }
+          } catch (error) {
+            console.error('Erro ao enviar formulário:', error);
+            newsletterMessage.textContent = 'Erro ao conectar com o servidor. Tente novamente.';
+            newsletterMessage.style.display = 'block';
+            newsletterMessage.style.color = '#dc3545';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

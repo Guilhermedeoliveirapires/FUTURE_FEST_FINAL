@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vida Plena — Assistente</title>
+
+  <link href="/https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --primary: #0b2940;
+      --accent: linear-gradient(90deg,#6B5BFF,#FF5CA8);
+      --muted: #98a0ab;
+      --shadow: 0 18px 40px rgba(11,41,64,0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: auto;
+      min-height: 100%;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, Arial;
+      background: var(--bg);
+      margin: 0;
+      color: #1c2530;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      background: transparent;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo img { height: 36px; }
+    .nav-center { display: flex; gap: 22px; }
+    .nav-center a {
+      text-decoration: none;
+      color: #070b0d;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+   .top-actions {
+  display: none !important;
+}
+
+.topbar {
+  justify-content: flex-start !important; 
+  gap: 380px !important; 
+}
+
+    .btn-pill {
+      border-radius: 999px;
+      padding: 8px 16px;
+      border: 1px solid rgba(11,41,64,0.08);
+      background: transparent;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-toggle {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .plan-chip {
+      background: var(--card);
+      padding: 12px 18px;
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(11,41,64,0.06);
+      font-weight: 700;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .plan-chip.inactive { opacity: 0.35; font-weight: 600; }
+
+    .chat-wrap {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .avatar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding-top: 6px;
+    }
+    .avatar-bubble {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#155b7a,#0b2940);
+      box-shadow: 0 8px 20px rgba(11,41,64,0.12);
+    }
+
+    .chat-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .assistant-card,
+    .question-box,
+    .featured-answer {
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 12px;
+    }
+
+    .assistant-card { background: var(--card); }
+    .assistant-card p { margin: 0; color: #22313a; font-size: 0.95rem; }
+    .assistant-card .muted { color: var(--muted); font-size: 0.88rem; margin-top: 10px; }
+
+    .question-box { background: var(--card); cursor: pointer; }
+    .featured-answer {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 24px 60px rgba(11,41,64,0.16);
+    }
+
+    .chips { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .chip {
+      background: rgba(255,255,255,0.9);
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(11,41,64,0.06);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 20px rgba(11,41,64,0.05);
+    }
+    .chip:hover { transform: translateY(-3px); transition: all .18s ease; }
+
+    .conversation-area {
+      max-height: 60vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-right: 8px;
+      scroll-behavior: smooth;
+    }
+
+    .conversation-area::-webkit-scrollbar { width: 8px; }
+    .conversation-area::-webkit-scrollbar-thumb {
+      background: rgba(11,41,64,0.25);
+      border-radius: 10px;
+    }
+
+    .bubble.user {
+      align-self: flex-end;
+      background: linear-gradient(90deg,#08303f,#0b2940);
+      color: white;
+      padding: 14px;
+      border-radius: 12px;
+      width: fit-content;
+      max-width: 80%;
+      font-weight: 600;
+      box-shadow: 0 18px 40px rgba(11,41,64,0.12);
+    }
+    .bubble.ai {
+      align-self: flex-start;
+      background: var(--card);
+      padding: 14px;
+      border-radius: 12px;
+      width: fit-content;
+      max-width: 80%;
+      color: #22313a;
+      box-shadow: 0 12px 30px rgba(11,41,64,0.06);
+    }
+
+    .composer {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(11,41,64,0.08);
+    }
+    .composer input[type="text"] {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 28px;
+      border: 1px solid rgba(11,41,64,0.1);
+      font-size: 1rem;
+      outline: none;
+    }
+    .send-btn {
+      border-radius: 30px;
+      padding: 12px 24px;
+      border: none;
+      color: white;
+      font-weight: 700;
+      background: var(--accent);
+      box-shadow: 0 12px 30px rgba(107,91,255,0.18);
+      cursor: pointer;
+    }
+
+    .helptext {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 920px) {
+      .chat-wrap { grid-template-columns: 44px 1fr; }
+      .avatar-bubble { width: 40px; height: 40px; }
+    }
+    @media (max-width: 560px) {
+      .nav-center { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="logo"><img src="logo.png.png" alt="Logo Vida Plena"></div>
+
+    <nav class="nav-center">
+      <a href="/home">Home</a>
+      <a href="/AI">Monte sua Rotina</a>
+      <a href="/planos">Planos</a>
+      <a href="/sobre">Sobre Nós</a>
+      <a href="/formulario">Contato</a>
+    </nav>
+
+    <div class="top-actions" id="topActions">
+      <div id="loginButtons" style="display: flex; gap: 10px;">
+        <a class="btn-pill" href="/registro">Cadastre-se</a>
+        <a class="btn-pill" href="/login">Entre</a>
+      </div>
+      <div id="profileButton" style="display: none;">
+        <div class="dropdown" style="position: relative;">
+          <a class="btn-pill" href="#" role="button" id="perfilMenu" style="display: flex; align-items: center; gap: 8px; text-decoration: none;" onclick="document.getElementById('profileDropdown').classList.toggle('show'); return false;">
+            <i class="bi bi-person-circle" style="font-size: 1.2rem;"></i>
+            <img id="perfilImgNav" src="" alt="Perfil" style="width: 24px; height: 24px; border-radius: 50%; display: none;">
+          </a>
+          <div id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 0.5rem 0; min-width: 150px; z-index: 1000; margin-top: 8px;">
+            <a href="/perfil" style="display: block; padding: 0.5rem 1rem; text-decoration: none; color: #333;">Meu Perfil</a>
+            <hr style="margin: 0.5rem 0;">
+            <a href="/sair" style="display: block; padding: 0.5rem 1rem; text-decoration: none; color: #dc3545;">Sair</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="plan-toggle" aria-hidden>
+      <div class="plan-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#6B5BFF" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/></svg>
+        2.5 Flash
+      </div>
+      <div class="plan-chip inactive">2.5 Pro</div>
+    </div>
+
+    <div class="chat-wrap" role="region" aria-label="Assistente Vida Plena">
+      <div class="avatar-col">
+        <div class="avatar-bubble" aria-hidden></div>
+      </div>
+
+      <div class="chat-col">
+        <div class="assistant-card">
+          <p><strong>Olá!</strong> Eu sou o assistente virtual Vida Plena, seu guia para criar uma rotina leve, saudável e adaptada ao seu dia a dia.
+          Com a ajuda da Inteligência Artificial, vou montar um plano personalizado considerando seus hábitos, objetivos e bem-estar.</p>
+          <p class="muted">Antes de começarmos, me conte um pouco sobre você 🌱</p>
+        </div>
+
+        <div class="question-box">O que você espera alcançar com uma rotina saudável?</div>
+
+        <div class="featured-answer">Espero emagrecer e ter uma saúde melhor</div>
+
+        <div class="chips">
+          <button class="chip">Perder peso</button>
+          <button class="chip">Ganhar massa</button>
+          <button class="chip">Melhorar sono</button>
+          <button class="chip">Aumentar energia</button>
+        </div>
+
+        <div class="conversation-area" id="history">
+          <div class="bubble ai">Olá! Como posso ajudar você hoje?</div>
+        </div>
+
+        <div class="composer">
+          <input type="text" id="messageInput" placeholder="Escreva sua Mensagem..." aria-label="Mensagem">
+          <button class="send-btn" id="sendBtn">Enviar</button>
+        </div>
+
+        <div class="helptext">Resposta instantânea — modelo de demonstração. Conecte a sua API para respostas reais.</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+  const historyEl = document.getElementById('history');
+  const input = document.getElementById('messageInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const chips = document.querySelectorAll('.chip');
+
+  function scrollToBottom(smooth = true) {
+    if (!historyEl) return;
+    if (smooth) {
+      historyEl.scrollTo({ top: historyEl.scrollHeight, behavior: 'smooth' });
+    } else {
+      historyEl.scrollTop = historyEl.scrollHeight;
+    }
+  }
+
+  function addBubble(text, type = 'ai') {
+    const el = document.createElement('div');
+    el.className = 'bubble ' + (type === 'user' ? 'user' : 'ai');
+    el.textContent = text;
+    historyEl.appendChild(el);
+    scrollToBottom(true);
+  }
+
+  async function sendMessage(text) {
+    if (!text) return;
+    addBubble(text, 'user');
+
+    const thinking = document.createElement('div');
+    thinking.className = 'bubble ai';
+    thinking.textContent = '... pensando';
+    historyEl.appendChild(thinking);
+    scrollToBottom(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+
+      const data = await response.json();
+      thinking.remove();
+      addBubble(data.reply || 'Erro ao obter resposta da IA.', 'ai');
+    } catch (err) {
+      thinking.remove();
+      addBubble('Erro de conexão com o servidor.', 'ai');
+      console.error(err);
+    }
+  }
+
+  sendBtn.addEventListener('click', () => {
+    const txt = input.value.trim();
+    if (!txt) return;
+    input.value = '';
+    sendMessage(txt);
+  });
+
+  input.addEventListener('keydown', async (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const texto = input.value.trim().toLowerCase();
+      
+   
+      if (texto === 'exit') {
+        input.value = '';
+        
+      
+        try {
+          const response = await fetch('/api/chat/reset', {
+            method: 'POST',
+            credentials: 'include'
+          });
+          
+          if (response.ok) {
+         
+            historyEl.innerHTML = '<div class="bubble ai">Contexto da conversa reiniciado. Como posso ajudar você agora?</div>';
+            addBubble('exit', 'user');
+            scrollToBottom(true);
+          
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
+          } else {
+          
+            window.location.reload();
+          }
+        } catch (err) {
+       
+          console.error('Erro ao resetar contexto:', err);
+          window.location.reload();
+        }
+        return;
+      }
+      
+      sendBtn.click();
+    }
+  });
+
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    sendMessage(chip.textContent.trim());
+  }));
+
+
+  async function atualizarNavbar() {
+    try {
+      const response = await fetch('/verificar-sessao', {
+        method: 'GET',
+        credentials: 'include'
+      });
+      const data = await response.json();
+      
+      if (data.logado && data.usuario) {
+
+        document.getElementById('loginButtons').style.display = 'none';
+        document.getElementById('profileButton').style.display = 'block';
+        
+   
+        if (data.imagemPerfil) {
+          document.getElementById('perfilImgNav').src = data.imagemPerfil;
+          document.getElementById('perfilImgNav').style.display = 'block';
+          const icon = document.querySelector('#perfilMenu i');
+          if (icon) icon.style.display = 'none';
+        }
+      } else {
+    
+        document.getElementById('loginButtons').style.display = 'flex';
+        document.getElementById('profileButton').style.display = 'none';
+      }
+    } catch (error) {
+      console.error('Erro ao verificar sessão:', error);
+    }
+  }
+
+
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('profileDropdown');
+    const menu = document.getElementById('perfilMenu');
+    if (dropdown && menu && !menu.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('show');
+      dropdown.style.display = 'none';
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', atualizarNavbar);
+  </script>
+
+</body>
+</html>

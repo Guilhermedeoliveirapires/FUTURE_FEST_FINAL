@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f6f8fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  width: 900px;
+  height: 550px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.image-section {
+  flex: 1;
+  background-image: url("Registro.png"); 
+  background-size: cover;
+  background-position: center;
+}
+
+
+.form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 60px;
+}
+
+.form-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #eaeef3;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: 2px solid #0088a9;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #012c3d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #03435d;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 13px;
+  color: #555;
+}
+
+.login-link a {
+  color: #0088a9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

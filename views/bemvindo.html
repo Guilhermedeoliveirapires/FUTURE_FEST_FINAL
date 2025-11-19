@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-Vindo</title>
+
+    <style>
+       
+        body {
+            background-color: #f7f9fc;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            color: #333;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <script>
+   
+        window.onload = function() {
+            alert("Login efetuado com sucesso!");
+        
+            setTimeout(() => {
+                window.location.href = "/home";
+            }, 2000);
+        };
+    </script>
+</head>
+<body>
+    <h1>Bem-vindo!</h1>
+    <p>Você acessou uma rota protegida com sucesso.</p>
+    <a href="/sair">Sair</a>
+</body>
+</html>

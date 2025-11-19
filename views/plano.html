@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planos - Vida Plena</title>
+  <link rel="stylesheet" href="plano.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    .navbar-plano {
+      background: transparent;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .navbar-plano .logo { display: flex; align-items: center; gap: 12px; }
+    .navbar-plano .logo img { height: 36px; }
+    .navbar-plano .nav-center { display: flex; gap: 22px; }
+    .navbar-plano .nav-center a {
+      text-decoration: none;
+      color: #070b0d;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .navbar-plano .top-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .navbar-plano .btn-pill {
+      border-radius: 999px;
+      padding: 8px 16px;
+      border: 1px solid rgba(11,41,64,0.08);
+      background: transparent;
+      color: #0b2940;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar-plano">
+    <div class="logo"><img src="logo.png.png" alt="Logo Vida Plena"></div>
+
+    <nav class="nav-center">
+      <a href="/home">Home</a>
+      <a href="/AI">Monte sua Rotina</a>
+      <a href="/planos">Planos</a>
+      <a href="/sobre">Sobre Nós</a>
+      <a href="/formulario">Contato</a>
+    </nav>
+
+    <div class="top-actions" id="topActions">
+      <div id="loginButtons" style="display: flex; gap: 10px;">
+        <a class="btn-pill" href="/registro">Cadastre-se</a>
+        <a class="btn-pill" href="/login">Entre</a>
+      </div>
+      <div id="profileButton" style="display: none;">
+        <div class="dropdown" style="position: relative;">
+          <a class="btn-pill" href="#" role="button" id="perfilMenu" style="display: flex; align-items: center; gap: 8px; text-decoration: none;" onclick="document.getElementById('profileDropdown').classList.toggle('show'); return false;">
+            <i class="bi bi-person-circle" style="font-size: 1.2rem;"></i>
+            <img id="perfilImgNav" src="" alt="Perfil" style="width: 24px; height: 24px; border-radius: 50%; display: none;">
+          </a>
+          <div id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 0.5rem 0; min-width: 150px; z-index: 1000; margin-top: 8px;">
+            <a href="/perfil" style="display: block; padding: 0.5rem 1rem; text-decoration: none; color: #333;">Meu Perfil</a>
+            <hr style="margin: 0.5rem 0;">
+            <a href="/sair" style="display: block; padding: 0.5rem 1rem; text-decoration: none; color: #dc3545;">Sair</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="plans">
+    <div class="plans-header">
+      <h2>Junte-se a nós</h2>
+    </div>
+
+    <div class="plans-container">
+      
+      <div class="plan-card">
+        <h3>Plano Iniciante</h3>
+        <h1>$10 <span>/ Mês</span></h1>
+        <p>Ideal para quem está começando sua jornada de bem-estar e busca orientação básica.</p>
+
+        <ul>
+          <li>✔️ Acesso ao assistente IA para montar rotinas personalizadas</li>
+          <li>✔️ Planos de exercícios básicos para iniciantes</li>
+          <li>✔️ Dicas de nutrição e alimentação saudável</li>
+          <li>✔️ Conteúdo educativo sobre bem-estar físico e mental</li>
+        </ul>
+
+        <a href="/pagamento?plano=iniciante" class="btn-assinar">Assinar Plano</a>
+      </div>
+
+  
+      <div class="plan-card destaque">
+        <h3>Plano Premium</h3>
+        <h1>$15 <span>/ Mês</span></h1>
+        <p>Experiência completa com todos os recursos e acompanhamento prioritário para resultados.</p>
+
+        <ul>
+          <li>✔️ Tudo do Plano Iniciante</li>
+          <li>✔️ Planos de treino avançados e personalizados</li>
+          <li>✔️ Acompanhamento nutricional detalhado</li>
+          <li>✔️ Sessões de mindfulness e meditação guiadas</li>
+          <li>✔️ Suporte prioritário via e-mail e chat</li>
+        </ul>
+
+        <a href="/pagamento?plano=premium" class="btn-assinar">Assinar Plano</a>
+      </div>
+
+      
+      <div class="plan-card">
+        <h3>Plano Master</h3>
+        <h1>$20 <span>/ Mês</span></h1>
+        <p>Experiência máxima com acompanhamento individual e recursos exclusivos para transformação completa.</p>
+
+        <ul>
+          <li>✔️ Tudo do Plano Premium</li>
+          <li>✔️ Consultoria individual com especialistas</li>
+          <li>✔️ Planos de treino ultra-personalizados</li>
+          <li>✔️ Acompanhamento psicológico e emocional</li>
+          <li>✔️ Acesso exclusivo a workshops e eventos ao vivo</li>
+        </ul>
+
+        <a href="/pagamento?plano=master" class="btn-assinar">Assinar Plano</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+ 
+  async function atualizarNavbar() {
+    try {
+      const response = await fetch('/verificar-sessao', {
+        method: 'GET',
+        credentials: 'include'
+      });
+      const data = await response.json();
+      
+      if (data.logado && data.usuario) {
+        document.getElementById('loginButtons').style.display = 'none';
+        document.getElementById('profileButton').style.display = 'block';
+        
+        if (data.imagemPerfil) {
+          document.getElementById('perfilImgNav').src = data.imagemPerfil;
+          document.getElementById('perfilImgNav').style.display = 'block';
+          const icon = document.querySelector('#perfilMenu i');
+          if (icon) icon.style.display = 'none';
+        }
+      } else {
+        document.getElementById('loginButtons').style.display = 'flex';
+        document.getElementById('profileButton').style.display = 'none';
+      }
+    } catch (error) {
+      console.error('Erro ao verificar sessão:', error);
+    }
+  }
+
+
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('profileDropdown');
+    const menu = document.getElementById('perfilMenu');
+    if (dropdown && menu && !menu.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('show');
+      dropdown.style.display = 'none';
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', atualizarNavbar);
+  </script>
+</body>
+</html>

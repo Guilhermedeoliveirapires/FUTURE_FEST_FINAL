@@ -1,0 +1,163 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f6f8fa;
+}
+
+
+.plans {
+  width: 100%;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.plans-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.plans-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0b2940;
+}
+
+
+.plan-toggle {
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.plan-toggle button {
+  border: none;
+  background: transparent;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.plan-toggle .active {
+  background: #00a3d2;
+  color: white;
+}
+
+.plan-toggle .inactive {
+  color: #333;
+}
+
+
+.plans-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 14px;
+  padding: 30px 25px;
+  width: 320px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plan-card h3 {
+  color: #222;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.plan-card h1 {
+  color: #0b2940;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.plan-card h1 span {
+  font-size: 1rem;
+  color: #555;
+}
+
+.plan-card p {
+  color: #6b7785;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.plan-card ul {
+  list-style: none;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.plan-card ul li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+
+.btn-assinar {
+  text-decoration: none;
+  background: #0b2940;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: block;
+}
+
+
+.plan-card:hover {
+  background: #0b2940;
+  color: white;
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.plan-card:hover h1,
+.plan-card:hover h3,
+.plan-card:hover p,
+.plan-card:hover ul li {
+  color: white;
+}
+
+.plan-card:hover .btn-assinar {
+  background: white;
+  color: #0b2940;
+}
+
+
+@media (max-width: 960px) {
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    max-width: 400px;
+  }
+}

@@ -1,0 +1,101 @@
+
+.contact-section {
+  background-color: #f8f9fa; 
+}
+
+.contact-card {
+  border-radius: 15px;
+  background: #fff;
+}
+
+
+.contact-info {
+  background-image: url("vetor_contatatos.png"); 
+  background-size: cover;
+  background-position: center;
+  color: white;
+  width: 100%;
+  max-width: 380px;
+}
+
+
+.contact-info h4 {
+  font-weight: 600;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info li i {
+  color: #00d4d4; 
+}
+
+
+.contact-form input,
+.contact-form textarea {
+  border-color: #ddd;
+  transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #00a0a0;
+  box-shadow: none;
+}
+
+
+.contact-form button {
+  background-color: #002b3d;
+  border: none;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #005f73;
+}
+
+
+
+.social-icons a {
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #00d4d4;
+}
+.btn-outline-dark:hover {
+  background-color: #105f81; 
+  color: white; 
+}
+
+
+.footer {
+  background-color: #121212;
+  color: #ccc;
+}
+
+.footer h6 {
+  color: #fff;
+  font-size: 15px;
+}
+
+.footer p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.footer a:hover {
+  color: #00bcd4 !important;
+}
+
+.footer i {
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer i:hover {
+  color: #00bcd4;
+}
