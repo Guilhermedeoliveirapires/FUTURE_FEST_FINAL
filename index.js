@@ -3,7 +3,7 @@ require('dotenv').config(); // <--- ISSO É OBRIGATÓRIO AGORA
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const session = require('express-session');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const methodOverride = require('method-override');
 const cors = require('cors');
 const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
