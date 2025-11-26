@@ -311,11 +311,40 @@ app.post('/registro', async (req, res) => {
     }
 });
 
-app.get('/home', (req, res) => {
-    const usuario = req.session.usuario || null;
-    const imagemPerfil = req.session.imagemPerfil || null;
+app.post('/login', async (req, res) => {
+    const cliente = new MongoClient(urlMongo);
+    try {
+        await cliente.connect();
+        const banco = cliente.db(nomeBanco);
+        const usuarios = banco.collection('usuarios');
 
-    res.render('home', { usuario, imagemPerfil });
+        const usuario = await usuarios.findOne({ email: req.body.email });
+
+        if (usuario && await bcrypt.compare(req.body.senha, usuario.senha)) {
+            // ←←← FORÇA A GRAVAÇÃO DA SESSÃO (o que estava faltando no Render)
+            req.session.usuario = usuario.nome;
+            req.session.save((err) => {  // <--- ESSA LINHA É OBRIGATÓRIA NO RENDER
+                if (err) {
+                    console.error('Erro ao salvar sessão:', err);
+                    return res.status(500).send('Erro interno');
+                }
+                // Agora sim redireciona
+                res.redirect('/home');  // <--- VAI DIRETO PRA HOME (pula o /bemvindo)
+            });
+        } else {
+            res.send(`
+                <script>
+                    alert("E-mail ou senha incorretos!");
+                    window.location.href = "/login";
+                </script>
+            `);
+        }
+    } catch (erro) {
+        console.error('Erro no login:', erro);
+        res.status(500).send('Erro no servidor');
+    } finally {
+        await cliente.close();
+    }
 });
 
 function protegerRota(req, res, next) {
